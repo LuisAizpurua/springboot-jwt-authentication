@@ -2,9 +2,9 @@ spring:
   application:
     name: security
   profiles:
-    active: dev
+    active: ${PROFILE:dev}
 server:
-  port: 8090
+  port: ${PORT:8090}
 
 key:
   jwt: bXV0ZV9kZXYwNDAzYmFja2VuZF8yMDAzY2xvdWREZXY=

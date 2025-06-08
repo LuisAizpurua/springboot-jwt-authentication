@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @Data
 @Builder
-
 public class UserAuth implements Serializable {
 
     @NotBlank(message = "The name can't be null")

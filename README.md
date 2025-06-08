@@ -19,8 +19,9 @@
  - `{ username: "moi054.ort", password: "moi_03ortdev" }`
 
 ##### 🌐 To view the database: `http://localhost:8090/h2-console`
-##### 🔒 Data H2:  `username: root | password: sasa`
+##### 🔒 DATA H2:  `username: root | password: sasa`
 ##### 🌐 PORT: `8090`
+##### 🙋‍♂️ ROLES USER: `ADMIN, CUSTOMER & USER`
 
 #### 🧾 Deployed enpoints 
   - ##### 📦 For Products
@@ -51,6 +52,15 @@
 - H2 
 - JJWT Jackson
 - Lombok
+
+#### 🐳 With Docker
+
+##### Raise the docker compose
+`docker compose -f ./security/docker-compose.yml up -d`
+
+##### 🐳 Build Image
+`docker build -t mute-security .`
+`docker run --env-file .env -p 8096:8090 -d --rm mute-security`
 
 <div style="font-weight: 700; margin: 15px 0; text-align: center; font-size: 20px; color: purple; text-decoration: underline;">
     It Was A Small Example Of Spring Security Safety To Test.

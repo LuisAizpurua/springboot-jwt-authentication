@@ -54,11 +54,13 @@ public class AuthService {
 
         serviceUser.userExists(userDto.getUsername());
 
+        Role roleUser = userDto.getRole() == null? Role.CUSTOMER: userDto.getRole();
+
         User user = User.builder()
                 .name(userDto.getName())
                 .username(userDto.getUsername())
                 .password(passwordEncoder.encode(userDto.getPassword()))
-                .roles(Role.CUSTOMER)
+                .roles(roleUser)
                 .enabled(true)
                 .build();
 
@@ -66,7 +68,7 @@ public class AuthService {
         String token = jwtService.generateToken(user, generatedExtraClaims(user));
 
         Optional.ofNullable(serviceUser.userSave(user))
-                .ifPresentOrElse(e-> logger.info("user %s saved successfully", user.getName()),()-> {
+                .ifPresentOrElse(e-> logger.info("user {} saved successfully", user.getName()),()-> {
                     try {
                         throw new UserError("user not saved", user.getName());
                     } catch (UserError e) {

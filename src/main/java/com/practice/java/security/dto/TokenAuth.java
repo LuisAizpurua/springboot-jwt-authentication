@@ -5,7 +5,6 @@ import jakarta.annotation.PostConstruct;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,11 +15,8 @@ public class TokenAuth {
 
     private String token;
 
+    @Builder.Default
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-    private Date date;
+    private final Date date = new Date(System.currentTimeMillis());
 
-    @PostConstruct
-    public void generatingDate(){
-        this.date = new Date(System.currentTimeMillis());
-    }
 }

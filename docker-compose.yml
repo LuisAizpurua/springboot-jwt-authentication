@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  pgdb:
+    image: postgres:13-alpine3.22
+    container_name: pg_db
+    restart: always
+    shm_size: 512mb
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=sasa
+      - POSTGRES_USER=root
+      - POSTGRES_DB=data
+#      - PGDATA=/var/lib/postgresql/data/pgdata
+
+  adminer:
+    image: adminer
+    restart: always
+#    depends_on: pgdb
+    ports:
+      - 8095:8080
+
+volumes:
+  postgres_data: {}
